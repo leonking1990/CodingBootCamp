@@ -1,1 +1,1 @@
-ECHO is on.
+ECHO is on. //first assigment

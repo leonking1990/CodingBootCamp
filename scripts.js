@@ -1,1 +1,1 @@
-ECHO is on. //first assigment
+ECHO is on. //first assigment for week 1

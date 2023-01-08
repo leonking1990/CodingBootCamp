@@ -2,7 +2,7 @@
 
 function subtract (arr){
 
-    var n = arr[arr.length-1]-arr[arr.length-arr.length];
+    var n = arr[arr.length-1]-arr[0];
 
     return console.log(n);
 }
@@ -23,7 +23,7 @@ ages.push(66);
 
 subtract(ages);
 
-findAvg(ages);
+console.log(findAvg(ages));
 
 // question 2
 var names = ["Sam", "Tommy", "Tim", "Sally", "Buck", "Bob"];
@@ -39,7 +39,7 @@ function aveNamLeg(arr){
     return a/arr.length;
 }
 
-aveNamLeg(names);
+console.log (aveNamLeg(names));
 
 function arrToStr(arr){
     var s = arr[0];
@@ -68,7 +68,7 @@ var nameLengths = nameLegth(names);
 console.log(nameLengths);
 
 //Question 6
-var n;
+var n=0;
 for(i=0; i< nameLengths.length;i++){
     n=n+nameLengths[i];
 }
@@ -161,6 +161,9 @@ var money=9;
 willBuyDrink(isHot,money);
 
 //Question 13
+//I took the product of each elient of two arrays to 
+//create a new array with the result of each element.
+//I created the function to see the results.
 function myFunc(arr1, arr2){
 
     if(arr1.length==arr2.length)

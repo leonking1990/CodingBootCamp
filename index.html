@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body class="container">
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand" href="">CodeProjex</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" 
+            aria-control="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                
+                
+            </ul>
+        </div>
+    </nav>
+
+    
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody id="body">
+          <tr id="1">
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr id="2">
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr id="3">
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th scope="col"> <input type="text" id="addFrName" placeholder="First name"> <br>
+                    <input type="text" id="addLaName" placeholder="Last name"> <br>
+                    <input type="text" id="addHandle" placeholder="Handle"> <br><br>
+                    <button id="add-text">Submit</button>
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th scope="col"> <input type="text" id="removeID" placeholder="ID #"><br><br> 
+                    <button id="remove">Remove</button>
+                </th>
+            </tr>
+        </thead>
+    </table>
+
+    
+    
+    
+    <!--<th scope="col">First <br> <input type="text" id="new-text"></th>
+    <th scope="col"><button id="add-text">Submit</button></th>-->
+
+    <script src="index.js"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</body>
+</html>

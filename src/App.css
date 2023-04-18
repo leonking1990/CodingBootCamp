@@ -1,0 +1,59 @@
+body{
+   color: navy;
+}
+#pokeImage{
+   height: 500px;
+   width: 500px;
+}
+#col{
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+}
+#row{
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+}
+.center{
+   text-align: center;
+}
+#myPokeImage{
+   height: 100px;
+   width: 100px;
+}
+#tableD{
+   text-align: center;
+}
+#tableH{
+   text-align: center;
+}
+#homeTile{
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   height: 300px;
+   width: 300px;
+}
+#homeTileMP{
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   height: 300px;
+   width: 400px;
+}
+#homeCol{
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   height: 500px;
+   width: 500px;;
+
+}
+#homeRow{
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   height: 500px;
+   width: 500px;
+}

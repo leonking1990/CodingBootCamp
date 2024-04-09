@@ -11,3 +11,66 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.title{
+  text-align: center;
+  margin-top: 25px;
+}
+
+.form{
+  margin: auto;
+  text-align: center;
+}
+
+.imagstyle{
+  text-align: center;
+}
+
+.polaroid {
+  width: 255px;
+  height: 270px;
+  background-color: lightgrey;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+  vertical-align: auto;
+  display: inline-block;
+  position: relative;
+  width: 40%;
+  
+}
+
+
+#x-button{
+  position: absolute;    
+  left: 10px;
+  top: 10px;
+  color: red;
+}
+input[type='submit'], button, [aria-label]{
+  cursor: pointer;
+}
+
+.container {
+  text-align: center;
+  padding: 10px 20px;
+}
+.imgtile{
+  border: 3px solid #4CAF50;
+  padding: 5px;
+  height: 100px;
+}
+.img1{
+  float: right;
+}
+
+#searchImg{
+  width: 260px;
+  height: 230px;
+}
+
+#center{
+  display: block;
+  margin-left: 250px;
+  margin-right: auto;
+  width: 50%;
+}
+

@@ -11,34 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-#page{
-  
-    margin-top: 30%;
-    width: 50%;
-    border-color: black;
-    border-style: solid;
-    text-align: center;
-    
-    
-  
-}
-#navbar{
-  margin-left: auto;
-  background-color: gray;
-  width: auto;
-  border-style: solid;
-
-}
-#loginbar{
-  width: 90%;
-  margin-left: 5%;
-  padding: 5px;
-    
-  
-}
-#loginsoace{
-  margin-top: 1%;
-}
-#PasswordInput{
-  margin-left: 2%;
-}

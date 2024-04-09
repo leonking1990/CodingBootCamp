@@ -1,92 +1,103 @@
-const PLAYER_X_CLASS = 'x'
-const PLAYER_O_CLASS = 'circle'
-const WINNING_COMBINATIONS = [
-	[0, 1, 2],
-	[3, 4, 5],
-	[6, 7, 8],
-	[0, 3, 6],
-	[1, 4, 7],
-	[2, 5, 8],
-	[0, 4, 8],
-	[2, 4, 6]
-]
-const cellElements = document.querySelectorAll('[data-cell]')
-const boardElement = document.getElementById('board')
-const winningMessageElement = document.getElementById('winningMessage')
-const restartButton = document.getElementById('restartButton')
-const winningMessageTextElement = document.getElementById('winningMessageText')
-const playerTurn = document.getElementById('playerTurn')
-let isPlayer_O_Turn = false
 
-startGame()
+let API_URL = 'https://pokeapi.co/api/v2/pokemon/'
+let PokeSearch = '';
+let searchHistory = [];
+let button = document.getElementById('search-pokemon');
+var parent = document.getElementById('imgtile');
+var textValue = document.getElementById('pokemon-name');
 
-restartButton.addEventListener('click', startGame)
+$.ajaxSetup({async: false});
 
-function startGame() {
-	isPlayer_O_Turn = false
-	cellElements.forEach(cell => {
-		cell.classList.remove(PLAYER_X_CLASS)
-		cell.classList.remove(PLAYER_O_CLASS)
-		cell.removeEventListener('click', handleCellClick)
-		cell.addEventListener('click', handleCellClick, { once: true })
-	})
-	setBoardHoverClass()
-	winningMessageElement.classList.remove('show')
+function call(PokeSearch){
+    let pokeData = `${API_URL}${PokeSearch}`;
+    $.ajax({
+        type: 'GET',
+        url: pokeData,
+        contentType: "application/json; charset=utf-8",
+        success: function () {
+            
+            Display(pokeData);
+            CreateHistory(pokeData); 
+            DisplayHistory();               
+        }
+    });
+    
+}
+function Display(pokeData){
+    var mainImage = document.getElementById('PokeImage');
+    var tbody = document.getElementById('body');
+    var imageData = '';
+    var tbodyData = '';
+    $.get(pokeData, function(pokeData) {
+
+        imageData += `<img id="img" src="https://img.pokemondb.net/artwork/${pokeData.name}.jpg" alt="">`;
+        
+        tbodyData += `<tr>`;
+        tbodyData += `<th scope="row">${pokeData.id}</th>`;
+        tbodyData += `<td>${pokeData.name}</td>`;
+        tbodyData += `<td>${pokeData.height}</td>`;
+        tbodyData += `<td>${pokeData.weight}</td>`;
+        tbodyData += `</td>`;
+        
+        mainImage.innerHTML = imageData;
+        tbody.innerHTML = tbodyData;
+    })
+
 }
 
-function handleCellClick(e) {
-	const cell = e.target
-	const currentClass = isPlayer_O_Turn ? PLAYER_O_CLASS : PLAYER_X_CLASS
-    if(isPlayer_O_Turn){
-        playerTurn.innerText = 'Player X\'s Turn'
-    }else{
-        playerTurn.innerText = 'Player O\'s Turn'
+function CreateHistory(pokeData){
+    let searchData = [];
+    $.get(pokeData, function(pokeData) {
+            searchData.push(pokeData.id);
+            searchData.push(pokeData.name);
+            searchData.push(pokeData.height);
+            searchData.push(pokeData.weight);
+            searchHistory.push(searchData);
+    })
+    
+}
+function DisplayHistory(){
+    var el = document.getElementById('imgtile');
+    el.innerHTML = '';
+    if(searchHistory.length >= 0){
+        while (searchHistory.length > 5){
+            searchHistory.shift();
+        }
+        for (let index = searchHistory.length; index > 0; index--) {
+            var data = '';
+            data += `<td id="${index - 1}">`;
+            data += '<div class="polaroid">';
+            data += `<img id="searchImg" onclick="DeleteItem('${index - 1}'),call('${searchHistory[index-1][0]}')" aria-label="Search" src="https://img.pokemondb.net/artwork/${searchHistory[index-1][1]}.jpg" alt="5 Terre" style="width: 260px;">`;
+            data += '<div class="container">';
+            data += `<p>${searchHistory[index-1][1]}</p>`;
+            data += '</div>';
+            data += `<a onclick="DeleteItem(${index-1})" aria-label="Delete" id="x-button">&#10005;</a>`;
+            data += "</div>";
+            parent.innerHTML += data;
+        
+        }}
+    
+}
+
+function DeleteItem(data){
+    searchHistory.splice(data,1)
+    DisplayHistory();
+}
+
+function ClearHistory(){
+    searchHistory = [];
+    DisplayHistory();
+}
+button.addEventListener('click', () =>{
+    PokeSearch = textValue.value;
+    textValue.value="";
+    call(PokeSearch)
+    
+})
+textValue.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter'){
+        PokeSearch = textValue.value;
+        textValue.value="";
+        call(PokeSearch)
     }
-	placeMark(cell, currentClass)
-	if (checkWin(currentClass)) {
-		endGame(false)
-	} else if (isDraw()) {
-		endGame(true)
-	} else {
-		swapTurns()
-		setBoardHoverClass()
-	}
-}
-function endGame(draw){
-    if (draw){
-        winningMessageTextElement.innerText = "It's a Draw!"
-    }else{
-        winningMessageTextElement.innerText = `Player with ${isPlayer_O_Turn ? "O's" : "X's"} wins!`
-    }
-    winningMessageElement.classList.add('show')
-    playerTurn.innerText = 'Player X\'s Turn'
-}
-
-function isDraw() {
-	return [...cellElements].every(cell => {
-		return cell.classList.contains(PLAYER_X_CLASS) || cell.classList.contains(PLAYER_O_CLASS)
-	})
-}
-function placeMark(cell, currentClass) {
-	cell.classList.add(currentClass)
-}
-
-function swapTurns() {
-	isPlayer_O_Turn = !isPlayer_O_Turn
-}
-function setBoardHoverClass() {
-	boardElement.classList.remove(PLAYER_X_CLASS)
-	boardElement.classList.remove(PLAYER_O_CLASS)
-	if (isPlayer_O_Turn) {
-		boardElement.classList.add(PLAYER_O_CLASS)
-	} else {
-		boardElement.classList.add(PLAYER_X_CLASS)
-	}
-}
-function checkWin(currentClass) {
-	return WINNING_COMBINATIONS.some(combination => {
-		return combination.every(index => {
-			return cellElements[index].classList.contains(currentClass)
-		})
-	})
-}
+})

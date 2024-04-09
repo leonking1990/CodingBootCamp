@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
-import Add from './components/Add';
-import Edit from './components/Edit';
-import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home2 from './components/Home2';
+import ReactDOM from "react-dom"
+import * as React from "react";
+import { BrowserRouter as Router, Routes, Route, Outlet, Link, useRouteMatch } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import NavBar from './Components/navBar';
+import PokeDex from './Components/PokeDex';
+import PokeStats from './Components/pokeStats';
+import MySavedList from './Components/mySavedList';
+import HomePage from './Components/homePage';
 
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <Router>
         <Routes>
-          <Route path='/' element={<Home2 />}/>
-          <Route path='/create' element={<Add />}/>
-          <Route path='/edit' element={<Edit />}/>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/myPokemon' element={<MySavedList />} />
+          <Route path='/pokedex' element={<PokeDex />} />
         </Routes>
       </Router>
+
     </div>
   );
 }
-
-export default App;
